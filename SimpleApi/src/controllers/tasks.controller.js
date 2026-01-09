@@ -14,7 +14,7 @@ export function createTask(req, res) {
     }
 
     if(done !== undefined && typeof done != "boolean"){
-        return res.status(400).json({ error: "done debe ser boolean (si se envia)"});
+        return res.status(404).json({ error: "done debe ser boolean (si se envia)"});
     }
 
     const newTask = {
@@ -32,7 +32,17 @@ export function listTask(res){
 }
 
 export function getTaskById(req,res){
+    const id = parseId(req);
+    if (id === null) {
+        return res.status(400).json({ error: "id invalido"});
+    }
 
+    const idx = tasks.findIndex((t) => t.id = id);
+    if(idx === -1){
+        return res.status(404).json({error: "task no encontrada"});
+    }
+
+    return res.json(task);
 }
 
 export function updateTaskPut(req,res){
