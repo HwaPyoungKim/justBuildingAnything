@@ -42,12 +42,12 @@ Modelo
 }
 
 ### 📘 Endpoints
-➕ Crear una task
+#### ➕ Crear una task
 ```bash
 POST /tasks
 ```
 
-Body
+##### Body
 ```bash
 {
   "title": "Comprar leche",
@@ -55,7 +55,7 @@ Body
 }
 ```
 
-Response – 201 Created
+##### Response – 201 Created
 ```bash
 {
   "id": 1,
@@ -63,12 +63,12 @@ Response – 201 Created
   "done": false
 }
 ```
-📄 Listar todas las tasks
+### 📄 Listar todas las tasks
 ```bash
 GET /tasks
 ```
 
-Response – 200 OK
+##### Response – 200 OK
 ```bash
 [
   {
@@ -78,12 +78,12 @@ Response – 200 OK
   }
 ]
 ```
-🔍 Obtener una task por ID
+### 🔍 Obtener una task por ID
 ```bash
 GET /tasks/:id
 ```
 
-Response – 200 OK
+##### Response – 200 OK
 ```bash
 {
   "id": 1,
@@ -92,18 +92,18 @@ Response – 200 OK
 }
 ```
 
-Errores posibles
+##### Errores posibles
 
 - 400 Bad Request → id inválido
 
 - 404 Not Found → task no encontrada
 
-✏️ Reemplazar una task (PUT)
+### ✏️ Reemplazar una task (PUT)
 ```bash
 PUT /tasks/:id
 ```
 
-Body
+##### Body
 ```bash
 {
   "title": "Comprar pan",
@@ -111,7 +111,7 @@ Body
 }
 ```
 
-Response – 200 OK
+##### Response – 200 OK
 ```bash
 {
   "id": 1,
@@ -119,19 +119,19 @@ Response – 200 OK
   "done": true
 }
 ```
-🩹 Actualizar parcialmente una task (PATCH)
+### 🩹 Actualizar parcialmente una task (PATCH)
 ```bash
 PATCH /tasks/:id
 ```
 
-Body (ejemplo)
+##### Body (ejemplo)
 ```bash
 {
   "done": true
 }
 ```
 
-Response – 200 OK
+##### Response – 200 OK
 ```bash
 {
   "id": 1,
@@ -139,21 +139,21 @@ Response – 200 OK
   "done": true
 }
 ```
-🗑 Eliminar una task
+### 🗑 Eliminar una task
 ```bash
 DELETE /tasks/:id
 ```
 
-Response – 204 No Content
+##### Response – 204 No Content
 
-❌ Errores comunes
-400 – Bad Request
+### ❌ Errores comunes
+##### 400 – Bad Request
 ```bash
 {
   "error": "title debe ser un string no vacío"
 }
 ```
-404 – Not Found
+##### 404 – Not Found
 ```bash
 {
   "error": "task no encontrada"
