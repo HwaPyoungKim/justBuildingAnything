@@ -40,7 +40,7 @@ Response
   "title": string,
   "done": boolean
 }
-
+```
 ### 📘 Endpoints
 #### ➕ Crear una task
 ```bash
@@ -160,21 +160,21 @@ DELETE /tasks/:id
 }
 ```
 ### ⚠️ Persistencia
--Los datos se guardan en memoria
--Se pierden al reiniciar el servidor
--No usar en producción
+- Los datos se guardan en memoria
+- Se pierden al reiniciar el servidor
+- No usar en producción
 
 ### 🎯 Objetivo del proyecto
--Entender la estructura de una API REST
--Separación de responsabilidades (routes / controllers / data)
--Uso correcto de HTTP status codes
--Modularización y helpers
+- Entender la estructura de una API REST
+- Separación de responsabilidades (routes / controllers / data)
+- Uso correcto de HTTP status codes
+- Modularización y helpers
 
 ### 🛠 Posibles mejoras
--Agregar capa services
--Conectar base de datos (PostgreSQL / MongoDB)
--Validaciones de datos
--Manejo centralizado de errores
+- Agregar capa services
+- Conectar base de datos (PostgreSQL / MongoDB)
+- Validaciones de datos
+- Manejo centralizado de errores
 
 Autenticación (JWT)
 
