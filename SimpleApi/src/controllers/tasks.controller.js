@@ -1,4 +1,4 @@
-import * as db from "../data/tasks.db.js";
+import { tasks, getNextId } from "../data/tasks.db.js";
 
 /**
  * Helpers / utilidades
@@ -26,13 +26,13 @@ function validateDone(done) {
 }
 
 function findTaskIndexById(id) {
-  return db.tasks.findIndex((t) => t.id === id);
+  return tasks.findIndex((t) => t.id === id);
 }
 
 function getTaskByIdOr404(res, id) {
   const idx = findTaskIndexById(id);
   if (idx === -1) return { idx: -1, task: null, handled: notFound(res) };
-  return { idx, task: db.tasks[idx], handled: null };
+  return { idx, task: tasks[idx], handled: null };
 }
 
 function validateCreateBody(res, body) {
@@ -81,6 +81,10 @@ function applyPatch(res, task, body) {
   return { ok: true, handled: null };
 }
 
+/**
+ * Controllers
+ */
+
 // POST /tasks
 export function createTask(req, res) {
   const validation = validateCreateBody(res, req.body);
@@ -89,18 +93,18 @@ export function createTask(req, res) {
   const { title, done } = req.body;
 
   const newTask = {
-    id: db.nextId++,
+    id: getNextId(),
     title: title.trim(),
     done: done ?? false,
   };
 
-  db.tasks.push(newTask);
+  tasks.push(newTask);
   return res.status(201).json(newTask);
 }
 
 // GET /tasks
 export function listTasks(req, res) {
-  return res.json(db.tasks);
+  return res.json(tasks);
 }
 
 // GET /tasks/:id
@@ -133,7 +137,7 @@ export function updateTaskPut(req, res) {
     done,
   };
 
-  db.tasks[idx] = updated;
+  tasks[idx] = updated;
   return res.json(updated);
 }
 
@@ -159,6 +163,6 @@ export function deleteTask(req, res) {
   const idx = findTaskIndexById(id);
   if (idx === -1) return notFound(res);
 
-  db.tasks.splice(idx, 1);
+  tasks.splice(idx, 1);
   return res.status(204).send();
 }
